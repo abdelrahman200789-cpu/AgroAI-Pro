@@ -116,14 +116,27 @@ elif page == "IoT Monitor":
 
 elif page == "Knowledge Hub":
     st.title("📚 Agricultural Knowledge Hub")
-    st.write("Search the short local notes bundled with the project.")
+    st.write("Search the bundled agricultural notes using TF-IDF and cosine similarity.")
     query=st.text_input("Search topics",placeholder="soil pH, irrigation, disease scouting, sensors...")
+    with st.expander("How does TF-IDF search work?"):
+        st.markdown("""
+        - **TF (Term Frequency):** measures how important a term is within a note.
+        - **IDF (Inverse Document Frequency):** reduces the weight of terms that appear in many notes and gives more weight to distinctive terms.
+        - **TF-IDF vector:** represents each note and the query numerically.
+        - **Cosine similarity:** ranks notes by how closely their vectors point in the same direction.
+
+        The relevance score is **not** a probability, a measure of scientific truth, or a diagnosis.
+        """)
     if query:
         results=search_knowledge(query)
-        if not results: st.info("No matching note. Try a broader keyword such as soil, water, crop, disease, or sensor.")
-        for result in results:
-            with st.expander(f"{result['title']} · keyword score {result['score']}"):
+        if not results:
+            st.info("No matching note found. Try broader terms such as soil, water, crop, disease, or sensor.")
+        for rank,result in enumerate(results,1):
+            with st.expander(f"{rank}. {result['title']} · TF-IDF relevance {result['score_percent']:.1f}%", expanded=(rank==1)):
+                st.progress(result['score'])
                 st.write(result['content'])
+                if result['matched_terms']:
+                    st.caption("Matched terms: " + ", ".join(result['matched_terms']))
                 st.caption(f"Local file: data/knowledge/{result['file']}")
     else:
         st.caption("Available topics")

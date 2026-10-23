@@ -30,7 +30,25 @@ def test_recommendation_returns_sorted_results():
     assert result[0]["score"] >= result[1]["score"]
 
 
-def test_knowledge_search_finds_irrigation_note(tmp_path):
-    (tmp_path / "irrigation.txt").write_text("soil moisture irrigation root zone", encoding="utf-8")
-    result = search_knowledge("irrigation moisture", tmp_path)
+def test_knowledge_search_uses_tfidf_and_ranks_relevant_note(tmp_path):
+    (tmp_path / "irrigation.txt").write_text(
+        "soil moisture irrigation root zone water scheduling", encoding="utf-8"
+    )
+    (tmp_path / "disease.txt").write_text(
+        "plant disease scouting leaf symptoms fungal infection", encoding="utf-8"
+    )
+    result = search_knowledge("irrigation soil moisture", tmp_path)
     assert result and result[0]["file"] == "irrigation.txt"
+    assert 0 < result[0]["score"] <= 1
+    assert result[0]["score_percent"] > 0
+    assert "irrigation" in result[0]["matched_terms"]
+
+
+def test_knowledge_search_returns_empty_for_unrelated_query(tmp_path):
+    (tmp_path / "irrigation.txt").write_text("soil moisture irrigation", encoding="utf-8")
+    assert search_knowledge("spacecraft nebula", tmp_path) == []
+
+
+def test_knowledge_search_returns_empty_for_blank_query(tmp_path):
+    (tmp_path / "irrigation.txt").write_text("soil moisture irrigation", encoding="utf-8")
+    assert search_knowledge("   ", tmp_path) == []

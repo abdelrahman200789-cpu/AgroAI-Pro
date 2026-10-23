@@ -8,9 +8,9 @@ An educational Streamlit prototype for exploring crop planning, plant-symptom ma
 - **Plant symptom assistant:** ranks included example rules by symptom overlap.
 - **Crop recommendation:** creates a transparent heuristic shortlist using season, soil type, pH, and water-need preference.
 - **IoT monitor:** checks manually entered sensor values against demonstration thresholds.
-- **Knowledge hub:** keyword search across bundled text notes.
+- **Knowledge hub:** TF-IDF text retrieval across bundled notes, ranked with cosine similarity and showing a relevance score plus matched terms.
 - **Dataset explorer:** filter, inspect, and download crop catalog rows.
-- Separate core logic in `agro_engine.py`, demo data in `data/`, and basic tests in `tests/`.
+- Separate core logic in `agro_engine.py`, demo data in `data/`, and tests in `tests/`. The Knowledge Hub uses TF-IDF (term frequency–inverse document frequency) and cosine similarity to rank notes against a search query.
 
 ## Requirements
 

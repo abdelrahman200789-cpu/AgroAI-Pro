@@ -2,6 +2,8 @@
 from pathlib import Path
 import json, re, math
 import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -76,15 +78,52 @@ def analyze_sensors(soil_moisture, temperature, humidity):
 
 
 def search_knowledge(query, folder=None):
-    """Small dependency-free keyword search over local educational text documents."""
-    folder=Path(folder) if folder else DATA_DIR/'knowledge'
-    terms=[w for w in normalize(query).split() if len(w)>1]
-    if not terms: return []
-    results=[]
-    for path in sorted(folder.glob('*.txt')):
-        content=path.read_text(encoding='utf-8')
-        norm=normalize(content)
-        hits=sum(norm.count(term) for term in terms)
-        if hits:
-            results.append({'title':path.stem.replace('_',' ').title(),'file':path.name,'score':hits,'content':content.strip()})
-    return sorted(results,key=lambda x:x['score'],reverse=True)
+    """Rank local knowledge notes with TF-IDF vectors and cosine similarity.
+
+    TF-IDF gives more weight to terms that are informative in a document and
+    less weight to terms that occur in many documents. Cosine similarity then
+    ranks each document against the user's query. Scores are relevance signals,
+    not probabilities or factual-confidence values.
+    """
+    folder = Path(folder) if folder else DATA_DIR / 'knowledge'
+    query = str(query).strip()
+    if not query:
+        return []
+
+    paths = sorted(folder.glob('*.txt'))
+    if not paths:
+        return []
+
+    documents = [path.read_text(encoding='utf-8').strip() for path in paths]
+    if not any(documents):
+        return []
+
+    # Fit IDF on the available note collection, then vectorize the query.
+    vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1, 2))
+    try:
+        document_vectors = vectorizer.fit_transform(documents)
+        query_vector = vectorizer.transform([query])
+    except ValueError:
+        # Happens when the notes contain no usable vocabulary.
+        return []
+
+    if query_vector.nnz == 0:
+        return []
+
+    similarities = cosine_similarity(query_vector, document_vectors).ravel()
+    query_terms = set(vectorizer.build_analyzer()(query))
+    results = []
+    for index, score in enumerate(similarities):
+        if score <= 0:
+            continue
+        doc_terms = set(vectorizer.build_analyzer()(documents[index]))
+        matched_terms = sorted(query_terms & doc_terms)
+        results.append({
+            'title': paths[index].stem.replace('_', ' ').title(),
+            'file': paths[index].name,
+            'score': round(float(score), 4),
+            'score_percent': round(float(score) * 100, 1),
+            'matched_terms': matched_terms,
+            'content': documents[index],
+        })
+    return sorted(results, key=lambda item: item['score'], reverse=True)
