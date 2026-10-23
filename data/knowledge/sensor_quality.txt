@@ -1,0 +1,3 @@
+Using farm sensors
+
+Sensors can drift, become dirty, or be placed in unrepresentative locations. Compare readings with manual observations, check calibration, and record units. A single temperature or humidity value cannot fully describe crop stress. Treat threshold alerts as prompts to inspect the field, not automatic diagnoses.

@@ -1,0 +1,3 @@
+Plant disease scouting
+
+Inspect multiple plants in multiple parts of the field. Record crop, growth stage, symptoms, date, recent weather, and whether symptoms are spreading. Look at both sides of leaves and inspect stems and roots if appropriate. Similar symptoms can be caused by pathogens, insects, nutrient imbalance, herbicide injury, or water stress. Confirm a diagnosis before choosing treatment.

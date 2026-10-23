@@ -1,0 +1,21 @@
+crop,season,soil_type,ideal_ph,water_need,nutrient_need,notes,data_type
+Tomato,Summer,Loamy,6.0-6.8,Medium,Medium,Warm season; avoid waterlogging.,educational_demo
+Wheat,Winter,Clay loam,6.0-7.5,Medium,Medium,Cool-season cereal; irrigation depends on growth stage.,educational_demo
+Cotton,Summer,Loamy,5.8-8.0,High,High,Long warm season; needs careful pest monitoring.,educational_demo
+Corn,Summer,Loamy,5.8-7.0,High,High,Needs adequate moisture during flowering.,educational_demo
+Rice,Summer,Clay,5.5-6.5,High,High,Water management is critical; local practices vary.,educational_demo
+Potato,Winter,Sandy loam,5.0-6.5,Medium,Medium,Avoid prolonged soil saturation.,educational_demo
+Onion,Winter,Sandy loam,6.0-7.0,Low,Medium,Shallow roots; regular moisture is useful.,educational_demo
+Fava Bean,Winter,Clay loam,6.0-7.5,Medium,Low,Legume; avoid excessive nitrogen fertilizer.,educational_demo
+Cucumber,Summer,Loamy,5.5-7.0,High,High,Sensitive to water stress.,educational_demo
+Pepper,Summer,Loamy,6.0-6.8,Medium,Medium,Warm-season crop; monitor pests regularly.,educational_demo
+Eggplant,Summer,Loamy,5.5-7.0,Medium,Medium,Warm weather crop.,educational_demo
+Lettuce,Winter,Loamy,6.0-7.0,Medium,Medium,Prefers cooler weather.,educational_demo
+Barley,Winter,Sandy loam,6.0-8.0,Low,Low,Often more drought tolerant than wheat.,educational_demo
+Sunflower,Summer,Loamy,6.0-7.5,Medium,Medium,Avoid waterlogging.,educational_demo
+Sorghum,Summer,Sandy loam,5.5-7.5,Low,Low,Relatively drought tolerant.,educational_demo
+Watermelon,Summer,Sandy loam,5.5-7.0,Medium,High,Needs warm conditions and good drainage.,educational_demo
+Garlic,Winter,Loamy,6.0-7.0,Low,Medium,Well-drained soil is important.,educational_demo
+Carrot,Winter,Sandy loam,5.8-7.0,Medium,Medium,Loose soil supports straight roots.,educational_demo
+Chickpea,Winter,Sandy loam,6.0-8.0,Low,Low,Avoid waterlogging.,educational_demo
+Peanut,Summer,Sandy loam,5.8-6.5,Medium,Medium,Loose soil helps pod development.,educational_demo

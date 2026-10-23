@@ -1,0 +1,3 @@
+Crop planning
+
+Crop suitability depends on season, soil texture, pH, water availability, climate, market needs, rotation, and local disease pressure. A simple recommendation score can help shortlist crops but cannot replace local agronomic planning, soil analysis, or current weather information.

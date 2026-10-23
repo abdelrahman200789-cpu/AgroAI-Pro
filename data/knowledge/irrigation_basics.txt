@@ -1,0 +1,5 @@
+Irrigation basics
+
+Check soil moisture near the active root zone rather than relying only on a fixed calendar. Crop stage, soil texture, temperature, wind, and recent rainfall affect water needs. Avoid both prolonged water stress and waterlogging. Sensor readings should be calibrated and checked against field conditions.
+
+This is general educational guidance. Follow local agricultural extension recommendations.

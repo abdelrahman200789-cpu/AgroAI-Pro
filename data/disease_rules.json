@@ -1,0 +1,152 @@
+[
+  {
+    "disease": "Tomato early blight (possible)",
+    "crop": "Tomato",
+    "symptoms": [
+      "brown spots",
+      "concentric rings",
+      "yellow leaves"
+    ],
+    "advice": [
+      "Remove badly affected leaves and dispose of them away from the crop.",
+      "Avoid overhead watering where practical and improve airflow.",
+      "Confirm diagnosis with a local agricultural specialist before applying treatments."
+    ],
+    "note": "Educational symptom-matching example; not a confirmed diagnosis."
+  },
+  {
+    "disease": "Tomato leaf curl (possible)",
+    "crop": "Tomato",
+    "symptoms": [
+      "curled leaves",
+      "yellowing",
+      "stunted growth"
+    ],
+    "advice": [
+      "Check the undersides of leaves for whiteflies or other pests.",
+      "Remove severely affected plants only after confirming the cause.",
+      "Seek local advice; leaf curl can have several causes."
+    ],
+    "note": "Several pests, viruses, and environmental stresses can produce similar symptoms."
+  },
+  {
+    "disease": "Powdery mildew (possible)",
+    "crop": "Wheat",
+    "symptoms": [
+      "white powder",
+      "white patches",
+      "yellow leaves"
+    ],
+    "advice": [
+      "Inspect several plants and both sides of leaves.",
+      "Avoid excessive nitrogen and overly dense growth.",
+      "Ask an extension specialist to confirm before treatment."
+    ],
+    "note": "Illustrative rule; conditions and local disease pressure matter."
+  },
+  {
+    "disease": "Wheat rust (possible)",
+    "crop": "Wheat",
+    "symptoms": [
+      "orange pustules",
+      "rust colored spots",
+      "brown pustules"
+    ],
+    "advice": [
+      "Inspect leaves across the field for spreading pustules.",
+      "Record the affected area and crop growth stage.",
+      "Contact a local plant-health service promptly if rust is suspected."
+    ],
+    "note": "Rust identification requires careful visual inspection."
+  },
+  {
+    "disease": "Cucumber downy mildew (possible)",
+    "crop": "Cucumber",
+    "symptoms": [
+      "angular yellow spots",
+      "yellow patches",
+      "leaf browning"
+    ],
+    "advice": [
+      "Check whether spots are limited by leaf veins.",
+      "Avoid wetting foliage when irrigating where feasible.",
+      "Confirm locally; other leaf problems may look similar."
+    ],
+    "note": "Symptom patterns alone are not definitive."
+  },
+  {
+    "disease": "Potato late blight (possible)",
+    "crop": "Potato",
+    "symptoms": [
+      "water soaked lesions",
+      "dark leaf lesions",
+      "white growth under leaves"
+    ],
+    "advice": [
+      "Inspect plants and nearby crops carefully.",
+      "Avoid moving potentially infected plant material through the field.",
+      "Get prompt local expert confirmation due to potential rapid spread."
+    ],
+    "note": "Do not rely on this tool alone for disease management."
+  },
+  {
+    "disease": "Pepper nutrient or water stress (possible)",
+    "crop": "Pepper",
+    "symptoms": [
+      "yellow leaves",
+      "leaf drop",
+      "stunted growth"
+    ],
+    "advice": [
+      "Check soil moisture and drainage.",
+      "Review recent fertilizer applications and soil test results.",
+      "Consider pests and root issues; symptoms are non-specific."
+    ],
+    "note": "This is a broad stress category, not a pathogen diagnosis."
+  },
+  {
+    "disease": "Cotton leaf spot (possible)",
+    "crop": "Cotton",
+    "symptoms": [
+      "brown spots",
+      "dark spots",
+      "leaf drop"
+    ],
+    "advice": [
+      "Inspect the pattern and severity across multiple plants.",
+      "Reduce leaf wetness where possible and keep field records.",
+      "Confirm the causal agent with a local specialist."
+    ],
+    "note": "Different leaf spots can have similar appearance."
+  },
+  {
+    "disease": "Rice leaf discoloration (possible)",
+    "crop": "Rice",
+    "symptoms": [
+      "yellow leaves",
+      "brown lesions",
+      "leaf tips dry"
+    ],
+    "advice": [
+      "Check water management and nutrient history.",
+      "Look for insect damage and the distribution of symptoms.",
+      "Use soil or plant testing and local expert advice to confirm."
+    ],
+    "note": "Many abiotic and biotic factors can cause discoloration."
+  },
+  {
+    "disease": "General plant stress (possible)",
+    "crop": "Any",
+    "symptoms": [
+      "wilting",
+      "yellow leaves",
+      "stunted growth"
+    ],
+    "advice": [
+      "Check soil moisture, drainage, roots, and recent weather.",
+      "Inspect for insects and visible lesions.",
+      "Use local expert support if symptoms persist or spread."
+    ],
+    "note": "General symptoms have many possible causes."
+  }
+]
