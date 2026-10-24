@@ -1,99 +1,90 @@
-# AgroAI Pro — Smart Farming Advisor
+# AgroAI Pro — IR-Based Agricultural Chatbot
 
-An educational Streamlit prototype for exploring crop planning, plant-symptom matching, simple sensor thresholds, and local agricultural knowledge notes.
+AgroAI Pro is a simple Streamlit chat interface built on the project's existing Information Retrieval (IR) engine. It uses **TF-IDF** and **Cosine Similarity** to retrieve the most relevant agricultural knowledge notes for a user's question.
 
-## Features
+## What it does
 
-- **Dashboard:** summary metrics and crop catalog chart.
-- **Plant symptom assistant:** ranks included example rules by symptom overlap.
-- **Crop recommendation:** creates a transparent heuristic shortlist using season, soil type, pH, and water-need preference.
-- **IoT monitor:** checks manually entered sensor values against demonstration thresholds.
-- **Knowledge hub:** TF-IDF text retrieval across bundled notes, ranked with cosine similarity and showing a relevance score plus matched terms.
-- **Dataset explorer:** filter, inspect, and download crop catalog rows.
-- Separate core logic in `agro_engine.py`, demo data in `data/`, and tests in `tests/`. The Knowledge Hub uses TF-IDF (term frequency–inverse document frequency) and cosine similarity to rank notes against a search query.
+- Provides a clean chat-style interface with conversation history.
+- Accepts questions about topics covered in the local knowledge base.
+- Ranks notes using TF-IDF vectors and cosine similarity.
+- Shows the retrieved answer and related source notes with relevance scores.
+- Includes suggested questions and a clear-conversation control.
+- Works locally without an API key or generative AI model.
+
+## Important distinction
+
+This is an **information-retrieval chatbot**, not a generative LLM. It does not invent a new answer; it returns the most relevant existing note from `data/knowledge/`. A relevance score measures textual similarity, not truth or scientific certainty. Answer quality depends on the contents and coverage of the knowledge base.
 
 ## Requirements
 
-- Python 3.10 or newer recommended
+- Python 3.10 or newer
 - pip
-- Internet connection only if installing packages or loading the optional sidebar image
 
 ## Run locally
 
-### 1. Extract the project
-
-Open a terminal in the `AgroAI_Pro_Streamlit` project folder.
-
-### 2. Create and activate a virtual environment
-
-**Windows PowerShell**
-
-```powershell
-py -m venv .venv
-.venv\Scripts\Activate.ps1
-```
-
-**Linux / macOS**
+### Linux / macOS
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-```
-
-### 3. Install packages
-
-```bash
 python -m pip install --upgrade pip
 pip install -r requirements.txt
-```
-
-### 4. Launch the Streamlit app
-
-```bash
 streamlit run app.py
 ```
 
-Streamlit should open the app in your browser. If it does not, use the local URL printed in the terminal, usually `http://localhost:8501`.
+### Windows PowerShell
 
-### 5. Run tests
-
-```bash
-pytest -q
+```powershell
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+streamlit run app.py
 ```
+
+The app normally opens at `http://localhost:8501`.
 
 ## Project structure
 
 ```text
 AgroAI_Pro_Streamlit/
-├── app.py                     # Streamlit interface and navigation
-├── agro_engine.py             # Diagnosis, recommendation, sensor, and search logic
+├── app.py                       # Chat UI built with Streamlit
+├── agro_engine.py               # Existing IR engine and project logic
 ├── data/
-│   ├── crops.csv              # Educational crop catalog
-│   ├── disease_rules.json    # Illustrative symptom rules
-│   └── knowledge/             # Local knowledge notes
+│   ├── knowledge/                # Text documents searched by the IR engine
+│   ├── crops.csv                 # Existing project data
+│   └── disease_rules.json        # Existing project data
 ├── tests/
 │   └── test_agro_engine.py
 ├── requirements.txt
-├── .gitignore
-└── README.md
+├── REPORT.md
+└── .gitignore
 ```
 
-## Important limitations
+## How retrieval works
 
-- The crop catalog, symptom rules, and sensor thresholds are **educational demo data**, not a validated or comprehensive regional agricultural dataset.
-- A symptom overlap score is **not** a probability and does not confirm a disease.
-- Crop suitability scores are simple rule-based heuristics, not yield predictions.
-- Sensor readings are manually entered; no physical IoT device, weather API, or cloud database is connected.
-- Confirm field decisions with local agricultural specialists, soil tests, and current regional guidance. Follow all product labels and local regulations.
+1. The app reads the `.txt` notes from `data/knowledge/`.
+2. `TfidfVectorizer` turns each note into a numerical vector.
+3. The user's question is transformed with the same vectorizer.
+4. `cosine_similarity` compares the question vector with the note vectors.
+5. The app shows the highest-ranked note and up to two related notes.
 
-## Suggested future upgrades
+## Extend the knowledge base
 
-1. Replace demo data with documented datasets from trusted agricultural/extension sources and preserve citations and licenses.
-2. Add image-based disease classification only after collecting a correctly labeled, licensed dataset and evaluating performance.
-3. Connect real sensors using a secure API or MQTT broker and add authentication.
-4. Add Arabic/English language switching and regional crop calendars.
-5. Add database persistence, user accounts, and deployment configuration.
+Add a `.txt` file inside `data/knowledge/`. Keep it focused on one topic and use clear, descriptive language. The IR engine automatically includes `.txt` files in that folder during a search.
 
-## License / data provenance
+## Limitations
 
-No third-party crop dataset is bundled. The included catalog and symptom rules are manually assembled illustrative examples. Review and adapt them with a qualified agricultural specialist before any practical use. Choose a project license before publishing or redistributing.
+- The knowledge base is small and educational, so some questions will not have a matching answer.
+- The current vectorizer is configured for English text; Arabic questions may not retrieve relevant notes reliably.
+- The app is not a substitute for professional agricultural advice.
+
+## Testing
+
+```bash
+pytest -q
+```
+
+## Deployment
+
+The app can be deployed on Streamlit Community Cloud by connecting the GitHub repository, selecting the intended branch, and setting `app.py` as the main file.

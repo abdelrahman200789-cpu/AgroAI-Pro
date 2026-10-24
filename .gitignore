@@ -1,8 +1,21 @@
-.venv/
-venv/
+# Python
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.env
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Streamlit secrets
 .streamlit/secrets.toml
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs / generated exports
 *.log
+*.tmp
